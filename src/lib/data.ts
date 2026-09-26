@@ -1,4 +1,4 @@
-import { desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNull, or, sql } from "drizzle-orm";
 
 import { db } from "@/db";
 import {
@@ -12,6 +12,7 @@ import {
   subscribers,
 } from "@/db/schema";
 import {
+  DIRECTOR_PORTRAIT,
   GALLERY,
   SEED_ARTICLES,
   SEED_EVENTS,
@@ -128,6 +129,31 @@ CREATE TABLE IF NOT EXISTS subscribers (
 
 let readyPromise: Promise<boolean> | null = null;
 
+/** Stock photography that was previously used as a stand-in for the Director.
+ *  Her own portrait must replace it wherever it still lingers in a database. */
+const LEGACY_DIRECTOR_COVER =
+  "https://images.pexels.com/photos/5905898/pexels-photo-5905898.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1400";
+
+/** Repairs the Director's imagery in databases seeded before her official
+ *  photographs were added. Runs only on empty/placeholder values, so a picture
+ *  the directorate sets by hand is never overwritten. */
+async function alignDirectorImagery(): Promise<void> {
+  await db
+    .update(articles)
+    .set({ coverUrl: DIRECTOR_PORTRAIT })
+    .where(
+      and(
+        eq(articles.slug, "prof-owapriba-p-abu-becomes-director"),
+        or(isNull(articles.coverUrl), eq(articles.coverUrl, LEGACY_DIRECTOR_COVER)),
+      ),
+    );
+
+  await db
+    .update(staff)
+    .set({ photoUrl: DIRECTOR_PORTRAIT })
+    .where(and(eq(staff.role, "Director"), isNull(staff.photoUrl)));
+}
+
 async function seed(): Promise<void> {
   const [articleCount] = await db
     .select({ n: sql<number>`count(*)::int` })
@@ -222,6 +248,10 @@ async function seed(): Promise<void> {
       })),
     );
   }
+
+  await alignDirectorImagery().catch(() => {
+    /* a content repair must never stop the site from serving */
+  });
 }
 
 /** Creates tables and seeds content the first time it is needed. */

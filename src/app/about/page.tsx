@@ -4,6 +4,8 @@ import { Accordion, Counter, PillarRail } from "@/components/motion";
 import { Btn, Chip, CornerTicks, Eyebrow, PageHero, SectionHeading } from "@/components/ui";
 import {
   ABOUT_IMAGE,
+  DIRECTOR_PHOTO_ALT,
+  DIRECTOR_PORTRAIT,
   FAQS,
   HEADLINE_STATS,
   LECTURE_IMAGE,
@@ -33,24 +35,33 @@ export default function AboutPage() {
         ]}
         image={LECTURE_IMAGE}
       >
-        <div className="flex flex-col gap-3 rounded-3xl border border-white/14 bg-white/7 p-6 backdrop-blur-xl">
-          <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-uniport-bright">
-            Director
-          </span>
-          <span className="font-display text-[1.3rem] leading-tight font-semibold">
-            {SITE.director}
-          </span>
-          <span className="mt-2 text-[0.8rem] leading-relaxed text-[#a9cde2]">
-            {SITE.address.building}
-            <br />
-            {SITE.address.campus}
-          </span>
-          <Link
-            href="/about/staff"
-            className="ulink mt-3 text-[0.8rem] font-semibold text-gold"
-          >
-            Meet the directorate →
-          </Link>
+        <div className="flex items-start gap-5 rounded-3xl border border-white/14 bg-white/7 p-6 backdrop-blur-xl">
+          <img
+            src={DIRECTOR_PORTRAIT}
+            alt={DIRECTOR_PHOTO_ALT}
+            width={236}
+            height={400}
+            className="h-28 w-24 shrink-0 rounded-2xl object-cover object-[50%_10%] ring-1 ring-white/25"
+          />
+          <div className="flex min-w-0 flex-col gap-2">
+            <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-uniport-bright">
+              Director
+            </span>
+            <span className="font-display text-[1.3rem] leading-tight font-semibold">
+              {SITE.director}
+            </span>
+            <span className="text-[0.8rem] leading-relaxed text-[#a9cde2]">
+              {SITE.address.building}
+              <br />
+              {SITE.address.campus}
+            </span>
+            <Link
+              href="/about/staff"
+              className="ulink mt-1 text-[0.8rem] font-semibold text-gold"
+            >
+              Meet the directorate →
+            </Link>
+          </div>
         </div>
       </PageHero>
 
