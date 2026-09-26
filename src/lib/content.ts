@@ -14,6 +14,14 @@ export const ABOUT_IMAGE =
 export const LECTURE_IMAGE =
   "https://images.pexels.com/photos/9275222/pexels-photo-9275222.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1400";
 
+/* The Director's own photographs — official CGCDS Uniport portraits held in
+   /public/images (cropped from cgcds.com.ng). These are the only images that
+   may stand for Prof. Owapriba P. Abu; no stock photography is used for her. */
+export const DIRECTOR_PORTRAIT = "/images/prof-owapriba-abu.jpg";
+export const DIRECTOR_COVER = "/images/prof-owapriba-abu-cover.jpg";
+export const DIRECTOR_PHOTO_ALT =
+  "Prof. Owapriba Prayer Abu, Director of the Centre for Gender, Conflict and Development Studies, University of Port Harcourt";
+
 export const ROTATING_WORDS = [
   "Gender Equity",
   "Conflict Resolution",
@@ -581,7 +589,7 @@ export const STAFF: StaffMember[] = [
     bio: "Prof. Owapriba Prayer Abu became Director of the Centre for Gender, Conflict and Development Studies (CGCDS-Uniport), University of Port Harcourt, taking the mantle of leadership from Dr. Adaku A. Ubelejit-Nte to lead the Centre into a more prospective and impactful future. Under her leadership the demands and studies related to gender awareness and proper conflict resolution continue to be a focus of the Centre.",
     expertise: ["Gender awareness", "Conflict resolution", "Centre administration"],
     tenure: "October 2025 – present",
-    photoUrl: null,
+    photoUrl: DIRECTOR_PORTRAIT,
     sortOrder: 1,
   },
   {
@@ -767,8 +775,7 @@ export const SEED_ARTICLES: SeedArticle[] = [
     publishedAt: "2025-10-18T09:00:00.000Z",
     featured: true,
     commentCount: 0,
-    coverUrl:
-      "https://images.pexels.com/photos/5905898/pexels-photo-5905898.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1400",
+    coverUrl: DIRECTOR_COVER,
     body: [
       {
         type: "p",

@@ -19,6 +19,8 @@ import {
 import { NewsExplorer, type NewsItem } from "@/components/interactive";
 import { Btn, Chip, Eyebrow, SectionHeading } from "@/components/ui";
 import {
+  DIRECTOR_PHOTO_ALT,
+  DIRECTOR_PORTRAIT,
   HEADLINE_STATS,
   HERO_IMAGE,
   PILLARS,
@@ -214,28 +216,38 @@ export default async function HomePage() {
               <div className="relative">
                 <Chip tone="ghost">Admission at a glance</Chip>
                 <ul className="mt-6 space-y-4">
-                  {[
-                    {
-                      k: "Director",
-                      v: SITE.director,
-                      href: "/about/staff",
-                    },
-                    {
-                      k: "Programmes",
-                      v: "PGD · M.Sc. · PhD",
-                      href: "/programs",
-                    },
-                    {
-                      k: "Admission form",
-                      v: "NGN 25,000 (non-refundable)",
-                      href: "/admission",
-                    },
-                    {
-                      k: "Short courses",
-                      v: "8 certificates · 3 months",
-                      href: "/programs/short-courses",
-                    },
-                  ].map((row) => (
+                  {(
+                    [
+                      {
+                        k: "Director",
+                        v: SITE.director,
+                        href: "/about/staff",
+                        photo: DIRECTOR_PORTRAIT,
+                        photoAlt: DIRECTOR_PHOTO_ALT,
+                      },
+                      {
+                        k: "Programmes",
+                        v: "PGD · M.Sc. · PhD",
+                        href: "/programs",
+                      },
+                      {
+                        k: "Admission form",
+                        v: "NGN 25,000 (non-refundable)",
+                        href: "/admission",
+                      },
+                      {
+                        k: "Short courses",
+                        v: "8 certificates · 3 months",
+                        href: "/programs/short-courses",
+                      },
+                    ] as {
+                      k: string;
+                      v: string;
+                      href: string;
+                      photo?: string;
+                      photoAlt?: string;
+                    }[]
+                  ).map((row) => (
                     <li key={row.k}>
                       <Link
                         href={row.href}
@@ -245,8 +257,19 @@ export default async function HomePage() {
                           {row.k}
                         </span>
                         <span className="mt-1.5 flex items-center justify-between gap-3">
-                          <span className="text-[0.92rem] font-medium text-white">
-                            {row.v}
+                          <span className="flex min-w-0 items-center gap-3">
+                            {row.photo && (
+                              <img
+                                src={row.photo}
+                                alt={row.photoAlt ?? ""}
+                                width={236}
+                                height={400}
+                                className="h-11 w-9 shrink-0 rounded-lg object-cover object-[50%_8%] ring-1 ring-white/20"
+                              />
+                            )}
+                            <span className="text-[0.92rem] font-medium text-white">
+                              {row.v}
+                            </span>
                           </span>
                           <svg viewBox="0 0 20 20" className="h-3.5 w-3.5 shrink-0 text-uniport-bright opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                             <path d="M3.5 10h13M11 4.5l5.5 5.5L11 15.5" strokeLinecap="round" strokeLinejoin="round" />

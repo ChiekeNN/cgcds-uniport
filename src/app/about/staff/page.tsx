@@ -1,6 +1,11 @@
 import { StaffDirectory, type StaffItem } from "@/components/interactive";
 import { Btn, Chip, CornerTicks, Eyebrow, PageHero, SectionHeading } from "@/components/ui";
-import { DIRECTORATE_OFFICES, HEADLINE_STATS } from "@/lib/content";
+import {
+  DIRECTOR_PHOTO_ALT,
+  DIRECTOR_PORTRAIT,
+  DIRECTORATE_OFFICES,
+  HEADLINE_STATS,
+} from "@/lib/content";
 import { getStaff } from "@/lib/data";
 import { SITE } from "@/lib/site";
 
@@ -25,6 +30,7 @@ export default async function StaffPage() {
     bio: r.bio,
     expertise: (r.expertise as string[]) ?? [],
     tenure: r.tenure,
+    photoUrl: r.photoUrl,
   }));
 
   return (
@@ -40,20 +46,29 @@ export default async function StaffPage() {
         ]}
         image="https://images.pexels.com/photos/3321802/pexels-photo-3321802.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1500"
       >
-        <div className="rounded-3xl border border-white/14 bg-white/7 p-6 backdrop-blur-xl">
-          <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-uniport-bright">
-            Office of the Director
-          </span>
-          <p className="mt-2 font-display text-[1.25rem] leading-tight font-semibold">
-            {SITE.director}
-          </p>
-          <div className="mt-4 space-y-1 text-[0.8rem] text-[#a9cde2]">
-            <a href={`mailto:${SITE.emails[1]}`} className="ulink block hover:text-white">
-              {SITE.emails[1]}
-            </a>
-            <a href={SITE.phones[0].href} className="ulink block hover:text-white">
-              {SITE.phones[0].value}
-            </a>
+        <div className="flex items-start gap-5 rounded-3xl border border-white/14 bg-white/7 p-6 backdrop-blur-xl">
+          <img
+            src={DIRECTOR_PORTRAIT}
+            alt={DIRECTOR_PHOTO_ALT}
+            width={236}
+            height={400}
+            className="h-24 w-[5.25rem] shrink-0 rounded-2xl object-cover object-[50%_12%] ring-1 ring-white/25"
+          />
+          <div className="min-w-0">
+            <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-uniport-bright">
+              Office of the Director
+            </span>
+            <p className="mt-2 font-display text-[1.25rem] leading-tight font-semibold">
+              {SITE.director}
+            </p>
+            <div className="mt-4 space-y-1 text-[0.8rem] text-[#a9cde2]">
+              <a href={`mailto:${SITE.emails[1]}`} className="ulink block hover:text-white">
+                {SITE.emails[1]}
+              </a>
+              <a href={SITE.phones[0].href} className="ulink block hover:text-white">
+                {SITE.phones[0].value}
+              </a>
+            </div>
           </div>
         </div>
       </PageHero>

@@ -218,6 +218,8 @@ export type StaffItem = {
   bio: string;
   expertise: string[];
   tenure: string | null;
+  /** Official portrait of the person; the monogram is only used when absent. */
+  photoUrl?: string | null;
 };
 
 function initials(name: string) {
@@ -295,13 +297,29 @@ export function StaffDirectory({ people }: { people: StaffItem[] }) {
                 aria-expanded={on}
                 className="flex w-full items-start gap-4 p-6 text-left"
               >
-                <span className="relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-uniport-deep to-uniport font-display text-[1.15rem] font-semibold text-white">
-                  {initials(p.name)}
-                  <span
-                    aria-hidden="true"
-                    className="absolute -right-6 -bottom-6 h-12 w-12 rounded-full bg-gold/30 blur-[6px]"
-                  />
-                </span>
+                {p.photoUrl ? (
+                  <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-1 ring-uniport/30">
+                    <img
+                      src={p.photoUrl}
+                      alt={`Portrait of ${p.name}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover object-[50%_16%]"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 bottom-0 h-1 bg-gold/80"
+                    />
+                  </span>
+                ) : (
+                  <span className="relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-uniport-deep to-uniport font-display text-[1.15rem] font-semibold text-white">
+                    {initials(p.name)}
+                    <span
+                      aria-hidden="true"
+                      className="absolute -right-6 -bottom-6 h-12 w-12 rounded-full bg-gold/30 blur-[6px]"
+                    />
+                  </span>
+                )}
                 <span className="min-w-0 flex-1">
                   <span className="block text-[1.05rem] leading-tight font-semibold text-navy">
                     {p.name}
@@ -334,6 +352,15 @@ export function StaffDirectory({ people }: { people: StaffItem[] }) {
               >
                 <div className="overflow-hidden">
                   <div className="border-t border-slate-100 px-6 pt-5 pb-6">
+                    {p.photoUrl && (
+                      <img
+                        src={p.photoUrl}
+                        alt={`Portrait of ${p.name}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="float-right ml-5 h-44 w-32 rounded-2xl border border-slate-200 object-cover object-[50%_10%] shadow-[var(--shadow-lift)]"
+                      />
+                    )}
                     <p className="text-[0.87rem] leading-[1.8] text-slate-600">{p.bio}</p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {p.expertise.map((x) => (
