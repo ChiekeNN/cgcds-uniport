@@ -139,7 +139,7 @@ export function NewsExplorer({ items }: { items: NewsItem[] }) {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
+                    className="h-full w-full object-cover object-[50%_14%] transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
                   />
                 )}
                 <span className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

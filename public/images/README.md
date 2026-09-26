@@ -7,8 +7,7 @@ the Director.
 
 | File | Use |
 | --- | --- |
-| `prof-owapriba-abu.jpg` | Portrait crop used for avatars, the "Office of the Director" cards and the staff directory (236×400). |
-| `prof-owapriba-abu-cover.jpg` | Wide 3:2 cover used for her news story, its cards and social preview (1200×800). |
+| `prof-owapriba-abu.jpg` | The one photograph of the Director used site-wide: her news story cover, news cards, social preview, avatars, the "Office of the Director" cards and the staff directory (236×400). Wide slots crop it face-first with `object-[50%_14%]`. |
 | `prof-owapriba-abu-source-300x200.jpg` | Unaltered source image, kept so a cleaner crop can be made later. |
 
 Source: the CGCDS Uniport site banner at `cgcds.com.ng` (uploaded 2025/10), which is a
@@ -26,7 +25,6 @@ convert /path/to/director.jpg -resize 720x1200^ -gravity north -extent 720x1200 
   -quality 92 public/images/prof-owapriba-abu.jpg
 ```
 
-Keep the same filenames — `src/lib/content.ts` (`DIRECTOR_PORTRAIT`, `DIRECTOR_COVER`) is the
-single place they are referenced. If the replacement is a plain portrait without a background,
-re-crop the wide cover from it as well, keeping her face and her name inside the vertical
-centre of the frame: the article header crops the cover down to its middle third.
+Keep the same filename — `src/lib/content.ts` (`DIRECTOR_PORTRAIT`) is the single place it is
+referenced, and the news components anchor their crops on `object-[50%_14%]`, so put her face
+in the upper part of the frame when you crop.

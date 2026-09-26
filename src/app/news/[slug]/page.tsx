@@ -133,7 +133,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             <img
               src={article.coverUrl}
               alt=""
-              className="anim-kenburns h-full w-full object-cover opacity-30"
+              className="anim-kenburns h-full w-full object-cover object-[50%_10%] opacity-30"
               loading="eager"
               decoding="async"
             />
@@ -196,7 +196,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
               <img
                 src={article.coverUrl}
                 alt={article.title}
-                className="h-[18rem] w-full object-cover md:h-[26rem]"
+                className="h-[18rem] w-full object-cover object-[50%_8%] md:h-[26rem]"
                 loading="eager"
                 decoding="async"
               />
@@ -348,7 +348,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
                       alt=""
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-108"
+                      className="h-full w-full object-cover object-[50%_14%] transition-transform duration-[900ms] group-hover:scale-108"
                     />
                   )}
                   <span className="absolute top-4 left-4 rounded-full bg-white/92 px-3 py-1 font-mono text-[0.54rem] uppercase tracking-[0.15em] text-uniport-deep backdrop-blur">

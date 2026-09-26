@@ -12,7 +12,6 @@ import {
   subscribers,
 } from "@/db/schema";
 import {
-  DIRECTOR_COVER,
   DIRECTOR_PORTRAIT,
   GALLERY,
   SEED_ARTICLES,
@@ -141,7 +140,7 @@ const LEGACY_DIRECTOR_COVER =
 async function alignDirectorImagery(): Promise<void> {
   await db
     .update(articles)
-    .set({ coverUrl: DIRECTOR_COVER })
+    .set({ coverUrl: DIRECTOR_PORTRAIT })
     .where(
       and(
         eq(articles.slug, "prof-owapriba-p-abu-becomes-director"),
