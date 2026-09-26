@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { NewsImage } from "./NewsImage";
+
 /* ═════════════════════════ News explorer ═══════════════════════ */
 
 export type NewsItem = {
@@ -133,15 +135,12 @@ export function NewsExplorer({ items }: { items: NewsItem[] }) {
               className="card-hover group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white"
             >
               <span className="relative block aspect-[16/10] overflow-hidden bg-navy">
-                {a.coverUrl && (
-                  <img
-                    src={a.coverUrl}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-[50%_14%] transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
-                  />
-                )}
+                <NewsImage
+                  src={a.coverUrl}
+                  alt=""
+                  fallbackLabel={a.category}
+                  imgClassName="transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
+                />
                 <span className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <span className="absolute top-4 left-4 rounded-full bg-white/92 px-3 py-1 font-mono text-[0.56rem] uppercase tracking-[0.15em] text-uniport-deep backdrop-blur">
                   {a.category}

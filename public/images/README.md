@@ -7,7 +7,8 @@ the Director.
 
 | File | Use |
 | --- | --- |
-| `prof-owapriba-abu.jpg` | The one photograph of the Director used site-wide: her news story cover, news cards, social preview, avatars, the "Office of the Director" cards and the staff directory (236×400). Wide slots crop it face-first with `object-[50%_14%]`. |
+| `prof-owapriba-abu.jpg` | The one photograph of the Director used site-wide: avatars, the "Office of the Director" cards and the staff directory (236×400). |
+| `news/prof-owapriba-abu-cover.jpg` | Designed 16:10 news cover composited from the portrait (navy blueprint panel, gold frame, centre caption) so wide news cards never stretch the small portrait. Referenced by `DIRECTOR_NEWS_COVER` in `src/lib/content.ts`. |
 | `prof-owapriba-abu-source-300x200.jpg` | Unaltered source image, kept so a cleaner crop can be made later. |
 
 Source: the CGCDS Uniport site banner at `cgcds.com.ng` (uploaded 2025/10), which is a

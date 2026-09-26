@@ -18,6 +18,9 @@ export const LECTURE_IMAGE =
    /public/images (cropped from cgcds.com.ng). These are the only images that
    may stand for Prof. Owapriba P. Abu; no stock photography is used for her. */
 export const DIRECTOR_PORTRAIT = "/images/prof-owapriba-abu.jpg";
+/** Designed 16:10 cover built from the Director's portrait for wide news slots,
+ *  so her photograph is never stretched or pixel-blown across a landscape card. */
+export const DIRECTOR_NEWS_COVER = "/images/news/prof-owapriba-abu-cover.jpg";
 export const DIRECTOR_PHOTO_ALT =
   "Prof. Owapriba Prayer Abu, Director of the Centre for Gender, Conflict and Development Studies, University of Port Harcourt";
 
@@ -774,7 +777,7 @@ export const SEED_ARTICLES: SeedArticle[] = [
     publishedAt: "2025-10-18T09:00:00.000Z",
     featured: true,
     commentCount: 0,
-    coverUrl: DIRECTOR_PORTRAIT,
+    coverUrl: DIRECTOR_NEWS_COVER,
     body: [
       {
         type: "p",

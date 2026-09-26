@@ -17,6 +17,7 @@ import {
   Ticker,
 } from "@/components/motion";
 import { NewsExplorer, type NewsItem } from "@/components/interactive";
+import { NewsImage } from "@/components/NewsImage";
 import { Btn, Chip, Eyebrow, SectionHeading } from "@/components/ui";
 import {
   DIRECTOR_PHOTO_ALT,
@@ -353,16 +354,14 @@ export default async function HomePage() {
               data-reveal="scale"
               className="card-hover group mt-12 grid overflow-hidden rounded-3xl border border-slate-200 bg-white lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]"
             >
-              <span className="relative block min-h-[16rem] overflow-hidden bg-navy">
-                {lead.coverUrl && (
-                  <img
-                    src={lead.coverUrl}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-[50%_14%] transition-transform duration-[1200ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
-                  />
-                )}
+              <span className="relative block aspect-[16/10] overflow-hidden bg-navy lg:aspect-auto lg:min-h-[24rem]">
+                <NewsImage
+                  src={lead.coverUrl}
+                  alt=""
+                  priority
+                  fallbackLabel={lead.category}
+                  imgClassName="transition-transform duration-[1200ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108"
+                />
                 <span className="absolute inset-0 bg-gradient-to-tr from-navy/70 via-transparent to-transparent" />
                 <span className="absolute top-5 left-5 flex items-center gap-2">
                   <span className="rounded-full bg-gold px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.16em] text-navy">

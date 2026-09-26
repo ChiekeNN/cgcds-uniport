@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import type { ArticleBlock } from "@/db/schema";
 import { Btn, Chip, Eyebrow, SectionHeading } from "@/components/ui";
+import { NewsImage } from "@/components/NewsImage";
 import { getArticleBySlug, getArticles } from "@/lib/data";
 import { SITE } from "@/lib/site";
 
@@ -191,14 +192,13 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
           <div className="shell relative">
             <div
               data-reveal="scale"
-              className="relative -mb-16 overflow-hidden rounded-t-[2rem] border-x border-t border-white/10 md:-mb-20"
+              className="relative -mb-16 h-[18rem] overflow-hidden rounded-t-[2rem] border-x border-t border-white/10 md:-mb-20 md:h-[26rem]"
             >
-              <img
+              <NewsImage
                 src={article.coverUrl}
                 alt={article.title}
-                className="h-[18rem] w-full object-cover object-[50%_8%] md:h-[26rem]"
-                loading="eager"
-                decoding="async"
+                priority
+                fallbackLabel={article.category}
               />
             </div>
           </div>
@@ -342,15 +342,12 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
                 className="card-hover group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white"
               >
                 <span className="relative block aspect-[16/10] overflow-hidden bg-navy">
-                  {r.coverUrl && (
-                    <img
-                      src={r.coverUrl}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover object-[50%_14%] transition-transform duration-[900ms] group-hover:scale-108"
-                    />
-                  )}
+                  <NewsImage
+                    src={r.coverUrl}
+                    alt=""
+                    fallbackLabel={r.category}
+                    imgClassName="transition-transform duration-[900ms] group-hover:scale-108"
+                  />
                   <span className="absolute top-4 left-4 rounded-full bg-white/92 px-3 py-1 font-mono text-[0.54rem] uppercase tracking-[0.15em] text-uniport-deep backdrop-blur">
                     {r.category}
                   </span>
