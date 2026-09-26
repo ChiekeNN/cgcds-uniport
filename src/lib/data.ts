@@ -229,7 +229,11 @@ export function ensureReady(): Promise<boolean> {
   if (!readyPromise) {
     readyPromise = (async () => {
       try {
-        await db.execute(sql.raw(DDL));
+        // Run one statement at a time (works on every driver).
+        for (const stmt of DDL.split(";")) {
+          const trimmed = stmt.trim();
+          if (trimmed) await db.execute(sql.raw(trimmed));
+        }
         await seed();
         return true;
       } catch {
